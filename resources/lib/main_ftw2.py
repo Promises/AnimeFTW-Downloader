@@ -28,23 +28,24 @@ class LoginFTW:
 		self.settings = {}
 		self.settings['token'] = ""
 		self.params = {"devkey":"hVhS-672s-sKhK-yUn0"}
-		Config = ConfigParser.ConfigParser()
-		Config.read("user.ini")
-		Name1 = self.ConfigSectionMap("UserInfo")['name']
-		Pass1 = self.ConfigSectionMap("UserInfo")['pass']
+		self.Config = ConfigParser.ConfigParser()
+		self.Config.read("user.ini")
+		self.Name1 = self.ConfigSectionMap("UserInfo")['name']
+		self.Pass1 = self.ConfigSectionMap("UserInfo")['pass']
 
-		self.settings['username'] = Name1
-		self.settings['password'] = Pass1
+		self.settings['username'] = self.Name1
+		self.settings['password'] = self.Pass1
+		print self.Name1 + self.Pass1
 
 
-	def ConfigSectionMap(self, section2):
-		Config = ConfigParser.ConfigParser()
-		Config.read("user.ini")
+	def ConfigSectionMap(self, section):
+		self.Config = ConfigParser.ConfigParser()
+		self.Config.read("user.ini")
 		dict1 = {}
-		options = Config.options(section2)
+		options = self.Config.options(section)
 		for option in options:
 			try:
-				dict1[option] = Config.get(section, option)
+				dict1[option] = self.Config.get(section, option)
 				if dict1[option] == -1:
 					DebugPrint("skip: %s" % option)
 			except:
