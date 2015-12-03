@@ -60,7 +60,7 @@ class LoginFTW:
 				self.loginOptions(0)
 			else:
 				# we will build the the token since username and password are set.
-				response = self.validateLogin('hennber', 'He569348')
+				response = self.validateLogin(self.settings['username'], self.settings['password'])
 				response = json.loads(response)
 				if 'status' in response and response['status'] == "200":
 					# Successful login, return the token.
